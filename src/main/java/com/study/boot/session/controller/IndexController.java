@@ -70,12 +70,18 @@ public class IndexController {
         response.sendRedirect("/loginForm");
     }
 
-    @GetMapping("/userInfo")
-    public String userInfo(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpServletResponse response) throws IOException {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        return authentication.getName();
+//    @GetMapping("/userInfo")
+//    public String userInfo(@AuthenticationPrincipal PrincipalDetails principalDetails, HttpServletResponse response) throws IOException {
+////        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+////        return authentication.getName();
+//
+//        return principalDetails.getUsername();
+//    }
 
-        return principalDetails.getUsername();
+    @GetMapping("/userInfo")
+    public String userInfo(HttpServletResponse response) throws IOException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName(); //로그인 전에는 anonymousUser 반환
     }
 
 }
